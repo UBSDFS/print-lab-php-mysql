@@ -49,3 +49,50 @@ a.checkout-button {
 background-color: beige;
     border: 1px solid #333;
 }
+
+/* Background image for landing page styling */
+.Landing-page-hero {
+    background-image: url('../images/wes-andy/wes_andy_07.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.Landing-page-hero {
+    
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+.enter-shop-button {
+    padding: 1rem;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+    margin-top: 40px;
+}
+.enter-shop-button:hover {
+    background-color: #f3f4f4;
+    padding: .5rem;
+    color: #000;
+    
+}
+
+/* Footer Styles */
+.site-footer {
+    background-color: #f6f4f4;
+    padding: 1rem;
+    margin-top: 2rem;
+    opacity: 0.2;
+}
+.site-footer p {
+    margin: 0;
+    color:#000;
+    
+}

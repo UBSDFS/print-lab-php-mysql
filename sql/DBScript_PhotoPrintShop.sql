@@ -1,21 +1,23 @@
-/*Create DB tables for photo print shop*/
 
 CREATE TABLE users (
   user_id INT AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(50) NOT NULL,
-  last_name VARCHAR(50) NOT NULL,
-  email VARCHAR(255) NOT NULL UNIQUE,
+  last_name  VARCHAR(50) NOT NULL,
+  email      VARCHAR(255) NOT NULL UNIQUE,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
 CREATE TABLE products (
   product_id INT AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(100) NOT NULL,
-  description VARCHAR(250) NULL,
+  title          VARCHAR(100) NOT NULL,
+  description    VARCHAR(250) NULL,
   image_filename VARCHAR(250) NULL,
-  base_price DECIMAL(10,2) NOT NULL DEFAULT 0.00,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  base_price     DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  created_at     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  max_quantity   INT NOT NULL DEFAULT 5
 );
+
 
 CREATE TABLE carts (
   cart_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -26,12 +28,13 @@ CREATE TABLE carts (
     ON DELETE SET NULL
 );
 
+
 CREATE TABLE cart_items (
   cart_item_id INT AUTO_INCREMENT PRIMARY KEY,
-  cart_id INT NOT NULL,
+  cart_id    INT NOT NULL,
   product_id INT NOT NULL,
-  size VARCHAR(20) NOT NULL,
-  qty INT NOT NULL DEFAULT 1,
+  size       VARCHAR(20) NOT NULL,
+  qty        INT NOT NULL DEFAULT 1,
   unit_price DECIMAL(10,2) NOT NULL DEFAULT 0.00,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   CONSTRAINT fk_cartitems_cart
@@ -43,17 +46,13 @@ CREATE TABLE cart_items (
   CONSTRAINT uq_cart_product_size UNIQUE (cart_id, product_id, size)
 );
 
-/*Place holder products for images to be used*/
 
-INSERT INTO products (title,description,image_filename,base_price)
-VALUES
-('wAp1','Wes Andy Collection','wa_01.jpeg',15.00),
-('wAp2','Wes Andy Collection','wa_02.jpeg',15.00),
-('wAp3','Wes Andy Collection','wa_03.jpeg',15.00),
-('wAp4','Wes Andy Collection','wa_04.jpeg',15.00),
-('wAp5','Wes Andy Collection','wa_05.jpeg',15.00),
-('wAp6','Wes Andy Collection','wa_06.jpeg',15.00),
-('wAp7','Wes Andy Collection','wa_07.jpeg',15.00),
-('wAp8','Wes Andy Collection','wa_08.jpeg',15.00),
-('wAp9','Wes Andy Collection','wa_09.jpeg',15.00),
-('wAp10','Wes Andy Collection','wa_10.jpeg',15.00);
+INSERT INTO products (title, description, image_filename, base_price, max_quantity) VALUES
+('Pink Utility','A solitary pastel shed centered in open green space, blending suburban order with playful color contrast.','wes_andy_01.jpg',24.99,5),
+('Park Maintenance','A neatly aligned tractor and equipment paused mid-task, emphasizing balance, color, and quiet routine.','wes_andy_02.jpg',24.99,5),
+('Waiting Benches','Symmetrical turquoise swings beneath a clean beam, inviting stillness in a carefully framed public space.','wes_andy_03.jpg',24.99,5),
+('Playground Exit','A bold yellow slide emerging from abstract playground forms, capturing geometry, color, and nostalgia.','wes_andy_04.jpg',24.99,5),
+('Red Flag Day','A minimal beach scene marked by a single red flag, balancing calm horizons with subtle tension.','wes_andy_05.jpg',24.99,5),
+('Parked Scooter','A mint-colored scooter resting among palms, evoking leisure, symmetry, and coastal quiet.','wes_andy_06.jpg',24.99,5),
+('Sky Bloom','Delicate flowers reach into open sky, emphasizing scale, softness, and restrained color harmony.','wes_andy_07.jpg',24.99,5),
+('Center Court','A lone basketball placed precisely on painted lines, highlighting order, balance, and everyday stillness.','wes_andy_08.jpg',24.99,5);

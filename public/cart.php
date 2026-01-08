@@ -31,9 +31,9 @@
 
 </html>
 
-/* TODO (Week 3): CRUD for Cart
+<!-- TODO (Week 3): CRUD for Cart
 * - Implement cart functionality using PHP to store selected prints.
 * - Add form elements to update item quantities directly within the cart.
 * - Calculate and display total price based on cart contents.
 *
-*/
+-->

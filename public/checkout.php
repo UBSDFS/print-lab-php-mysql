@@ -10,7 +10,7 @@
 <?php include '../includes/footer.php'; ?>
 </body>
 
-/*TODO:
+<!-- TODO:
 * - Design and implement checkout form with fields for billing/shipping info.
 * - Validate form inputs and handle errors.
-*/
+-->
