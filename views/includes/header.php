@@ -7,3 +7,8 @@
     <title>Print Shop</title>
     <link rel="stylesheet" href="/print-lab-php-mysql/public/assets/css/styles.css">
 </head>
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>

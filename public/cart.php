@@ -1,39 +1,54 @@
-<?php include '../includes/header.php'; ?>
-<?php include '../includes/nav.php'; ?>
+<?php
+session_start(); // Start the session to access cart data
 
-<body>
+$mysqli = require __DIR__ . '/../config/database.php';
 
-    <!-- main section-->
-    <main class="Cart-page">
-        <h1>Your Shopping Cart</h1>
-        <p>Cart page currently under construction.
-            Selected prints will be displayed here with options to modify quantities or remove items.
-        </p>
+if (!isset($_SESSION['cart'])) { // Initialize cart if not set
+    $_SESSION['cart'] = []; //session cart as associative array product_id => quantity
+}
 
-        <section class="cart-items">
-            <!--cart item-->
-            <div class="cart-item">
-                <div class="item-image placeholder"></div>
-                <div class="item-details">
-                    <h3>Wes Andy</h3>
-                    <p class="price"> $1000</p>
-                    <p class="quantity"> Quantity: 1 </p>
 
-                </div>
-            </div>
-            <a class="remove-from-cart" href="#"> Remove from cart</a>
-            <a class="continue-shopping" href="/print-lab-php-mysql/public/prints.php"> Continue Shopping </a>
-            <a class="checkout-button" href="/print-lab-php-mysql/public/checkout.php"> Proceed to Checkout </a>
-        </section>
-    </main>
-</body>
-<?php include '../includes/footer.php'; ?>
 
-</html>
+// Build $items and $subtotal for the view
+$cart = $_SESSION['cart'];
+$items = []; // Array to hold cart items with details
+$subtotal = 0.0;
 
-<!-- TODO (Week 3): CRUD for Cart
-* - Implement cart functionality using PHP to store selected prints.
-* - Add form elements to update item quantities directly within the cart.
-* - Calculate and display total price based on cart contents.
-*
--->
+// Fetch product details for items in the cart
+if (!empty($cart)) {
+    $ids = array_keys($cart); // Get product IDs from the cart
+    $placeholders = implode(',', array_fill(0, count($ids), '?')); // Prepare placeholders for SQL IN clause
+
+    $sql = "SELECT product_id, title, base_price, image_filename, max_quantity
+            FROM products
+            WHERE product_id IN ($placeholders)";
+
+    $stmt = $mysqli->prepare($sql);
+    $types = str_repeat('i', count($ids));
+    $stmt->bind_param($types, ...$ids);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_assoc()) { // Process each product in the cart for display
+        $pid = (int)$row['product_id'];
+        $qty = (int)($cart[$pid] ?? 1);
+
+        $maxQ = min((int)($row['max_quantity'] ?? 5), 5);
+        if ($qty > $maxQ) $qty = $maxQ;
+
+        $lineTotal = $qty * (float)$row['base_price']; // Calculate line total
+        $subtotal += $lineTotal;
+        // Add item details to $items array
+        $items[] = [
+            'product_id' => $pid,
+            'title' => $row['title'],
+            'price' => (float)$row['base_price'],
+            'qty' => $qty,
+            'max' => $maxQ,
+            'image_filename' => $row['image_filename'],
+            'line_total' => $lineTotal
+        ];
+    }
+}
+
+require __DIR__ . '/../views/cart.php';

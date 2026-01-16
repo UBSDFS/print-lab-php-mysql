@@ -52,21 +52,17 @@ background-color: beige;
 
 /* Background image for landing page styling */
 .Landing-page-hero {
-    background-image: url('../images/wes-andy/wes_andy_07.jpg');
+    background-image: url('/print-lab-php-mysql/public/assets/images/wes-andy/wes_andy_07.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-}
-.Landing-page-hero {
-    
-    background-size: cover;
-    background-position: center;
     height: 80vh;
     display: flex;
-    justify-content: center;
     align-items: center;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+    justify-content: center;
 }
 .enter-shop-button {
     padding: 1rem;
@@ -95,4 +91,77 @@ background-color: beige;
     margin: 0;
     color:#000;
     
+}
+
+/* Product Grid Styles */
+/* Prints page grid */
+.products-grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Card */
+.product-card{
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.10);
+}
+
+/* Image */
+.product-image{
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+
+.product-details{
+  padding: 1rem;
+  text-align:left;
+}
+
+.product-title{
+  margin:0 0 .25rem 0;
+  font-size: 1.1rem;
+}
+
+.product-type,
+.product-price{
+  margin:.25rem 0;
+}
+
+.product-actions{
+  margin-top:.75rem;
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+}
+
+.qty-label select{
+  margin-left:.35rem;
+}
+
+.add-to-cart-btn{
+  padding:.5rem .85rem;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+
+/* Responsive fallbacks */
+@media (max-width: 1100px){
+  .products-grid{ grid-template-columns: repeat(3, minmax(240px, 1fr)); }
+}
+@media (max-width: 850px){
+  .products-grid{ grid-template-columns: repeat(2, minmax(240px, 1fr)); }
+}
+@media (max-width: 550px){
+  .products-grid{ grid-template-columns: 1fr; }
 }

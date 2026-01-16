@@ -6,6 +6,7 @@ $user = 'root'; // Database username
 $pass = ''; // Database password
 $db   = 'print_store'; // Database name
 
+
 $mysqli = new mysqli($host, $user, $pass, $db); // Create a new MySQLi connection
 
 if ($mysqli->connect_error) {
