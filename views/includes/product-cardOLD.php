@@ -45,3 +45,5 @@ $imgSrc = "/assets/images/wes-andy/" . ($product['image_filename'] ?? '');
         </form>
     </div>
 </div>
+
+<!-- Discard file or after code refactor -->

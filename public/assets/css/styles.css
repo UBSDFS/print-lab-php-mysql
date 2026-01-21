@@ -16,18 +16,52 @@ body{
 }
 
 /* Navigation Styles */
-.site-nav {
-    background-color: #d1d0d0;
-    padding: 1rem;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
 
+.site-nav {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+
+  padding: 1.3rem 1rem;
+  background-color: #f4efe9; /* warm cream */
+  border-bottom: 2px solid #d9cfc2;
 }
-.site-nav a:hover{
-    text-decoration: underline;
-    color:#f8f8f8
+
+.site-nav a {
+  font-family: "Futura", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95rem;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+
+  color: #3a3a3a;
+  text-decoration: none;
+  position: relative;
+  padding: 0.3rem 0;
 }
+
+/* underline reveal */
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background-color: #c97b63; /* muted coral */
+  transform: translateX(-50%);
+  transition: width 0.25s ease;
+}
+
+.site-nav a:hover::after {
+  width: 100%;
+}
+
+/* color shift */
+.site-nav a:hover {
+  color: #c97b63;
+}
+
+
 
 /* Main Content Styles */
 main{

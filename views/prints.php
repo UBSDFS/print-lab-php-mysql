@@ -1,28 +1,6 @@
-<?php
+<?php require_once __DIR__ . '/includes/header.php'; ?> <!-- Include the header -->
+<?php require_once __DIR__ . '/includes/nav.php'; ?> <!-- Include the navigation -->
 
-$mysqli = require __DIR__ . '/../config/database.php'; // Get the database connection
-
-if (!$mysqli instanceof mysqli) { // Check if connection is valid
-    die('Database connection not established');
-}
-
-$sql = "SELECT product_id, title, description, image_filename, base_price, max_quantity
-        FROM products
-        ORDER BY product_id ASC";
-
-$result = $mysqli->query($sql);
-if (!$result) {
-    die("Query failed: " . $mysqli->error);
-}
-
-$products = [];
-while ($row = $result->fetch_assoc()) {
-    $products[] = $row;
-}
-
-require_once __DIR__ . '/includes/header.php'; // Include the header
-require_once __DIR__ . '/includes/nav.php'; // Include the navigation
-?>
 
 <main class="prints-page">
     <h1>Prints</h1>
@@ -62,3 +40,6 @@ require_once __DIR__ . '/includes/nav.php'; // Include the navigation
 </main>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
+
+
+<!-- Receives variables from the controller and displays them ($products)-->
