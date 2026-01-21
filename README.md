@@ -1,4 +1,4 @@
-Description Print Lab is a PHP and MySQL based web application that allows users to browse a curated collection of photography prints, add items to a shopping cart, update quantities, and proceed to checkout. The application focuses on clean MVC and UI design, structured server-side logic, and foundational e-commerce functionality.
+Description: Print Lab is a PHP and MySQL based web application that allows users to browse a curated collection of photography prints, add items to a shopping cart, update quantities, and proceed to checkout. The application focuses on clean MVC and UI design, structured server-side logic, and foundational e-commerce functionality.
 
 Project Features
 
