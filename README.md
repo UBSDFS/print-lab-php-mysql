@@ -29,3 +29,6 @@ Clear naming conventions reduce confusion.
 Documentation and comments support efficient development.
 Version control discipline protects progress.
 Future Improvements User authentication, persistent carts, order history, payment integration and improved styling.
+
+Project link: 
+https://github.com/UBSDFS/print-lab-php-mysql
